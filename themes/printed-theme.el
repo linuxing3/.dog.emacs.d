@@ -31,7 +31,7 @@
  `(font-lock-type-face            ((t ())))
  `(font-lock-preprocessor-face    ((t (:inherit font-lock-constant-face))))
  `(highlight                      ((t (:background "#eeeeee"))))
- `(lazy-highlight                 ((t (:box (:line-width (-1 . -1) :color "#000000")))))
+ ;; `(lazy-highlight                 ((t (:box (:line-width (-1 . -1) :color "#000000")))))
  '(shadow                         ((t (:foreground "#666"))))
  '(meow-keypad-cursor             ((t (:background "#f59842"))))
  '(meow-insert-cursor             ((t (:background "#bf3b1d"))))

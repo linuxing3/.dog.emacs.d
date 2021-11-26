@@ -24,15 +24,15 @@
 ;;; Fonts
 ;; Custom fonts can be set in ~/.emacs.d/private.el
 
-(defvar +font-wide-family "Source Code Pro")
-(defvar +font-tall-family "Source Code Pro")
-(defvar +font-unicode-family "LXGW WenKai")
-(defvar +fixed-pitch-family "Sarasa Mono SC")
-(defvar +variable-pitch-family "LXGW WenKai")
+(defvar +font-wide-family "Droid Sans Mono")
+(defvar +font-tall-family "Droid Sans Mono")
+(defvar +font-unicode-family "Cantarell")
+(defvar +fixed-pitch-family "Cantarell")
+(defvar +variable-pitch-family "Cantarell")
 (defvar +font-rescale '((tall . 1.0) (wide . 1.0)))
 (defvar +font-wide-or-tall 'tall)
 (defvar +font-size-list '(10 11 12 13 14 15 16 17 18))
-(defvar +font-size 10)
+(defvar +font-size 16)
 
 (defun +get-base-font ()
   (if (eq 'tall +font-wide-or-tall) +font-tall-family +font-wide-family))

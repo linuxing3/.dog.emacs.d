@@ -1,3 +1,5 @@
+(setq user-emacs-directory "~/.dog.emacs.d")
+
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "themes" user-emacs-directory))
 
