@@ -133,6 +133,6 @@
 (setq org-html-themify-themes '((dark . graverse)
                                 (light . grayscale)))
 
-;; (require 'init-org-plus)
+(require 'init-org-plus)
 
 (provide 'init-org)
