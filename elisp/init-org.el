@@ -110,7 +110,7 @@
  org-roam-v2-ack t
 
  org-roam-directory
- (let ((p (expand-file-name "~/org")))
+ (let ((p (expand-file-name "~/org/roam")))
    (unless (file-directory-p p) (make-directory p))
    p))
 
@@ -132,5 +132,7 @@
 (add-hook 'org-mode-hook 'org-html-themify-mode)
 (setq org-html-themify-themes '((dark . graverse)
                                 (light . grayscale)))
+
+;; (require 'init-org-plus)
 
 (provide 'init-org)
