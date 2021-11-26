@@ -80,7 +80,7 @@
   (require 'org-tempo)
   (+org-babel-setup)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0)
-        org-agenda-files '("~/Org"))
+        org-agenda-files '("~/org"))
   (custom-set-faces
    '(org-table ((t :inherit 'fixed-pitch)))
    '(org-code ((t :inherit 'fixed-pitch)))
@@ -110,7 +110,7 @@
  org-roam-v2-ack t
 
  org-roam-directory
- (let ((p (expand-file-name "~/Org")))
+ (let ((p (expand-file-name "~/org")))
    (unless (file-directory-p p) (make-directory p))
    p))
 
