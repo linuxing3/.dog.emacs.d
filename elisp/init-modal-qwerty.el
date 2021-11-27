@@ -21,7 +21,7 @@
    '("-" . split-window-below)
    ;; high frequency commands
    '("$" . +change-theme)
-   '(";" . comment-dwim)
+   '(";" . comment-dwim)                ; comment a line
    '("k" . kill-this-buffer)
    '("p" . project-find-file)
    '("j" . project-switch-to-buffer)
@@ -39,6 +39,7 @@
    '("P" . pass)
    '("R" . org-roam-mode)
    '("A" . org-agenda)
+   '("C" . org-capture)
    '("D" . docker))
 
 (defun meow-setup ()
@@ -46,6 +47,7 @@
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
    '("k" . meow-prev))
+  ;;; `SPC' as leader key
   (meow-leader-define-key
    ;; SPC j/k will run the original command in MOTION state.
    '("j" . meow-motion-origin-command)
@@ -64,38 +66,39 @@
    ;; cheatsheet
    '("?" . meow-cheatsheet)
    ;; high frequency keybindings
-   '("e" . "C-x C-e")
-   '(")" . "C-)")
-   '("}" . "C-}")
-   '("." . "M-.")
-   '("," . "M-,")
+   '("e" . "C-x C-e")                   ; evaluate last expression
+   '(")" . "C-)")                       ; indent next line with )
+   '("}" . "C-}")                       ; close previous )
+   '("." . "M-.")                       ; jump to definition
+   '("," . "M-,")                       ; jump back from definition
    ;; window management
-   '("w" . other-window)
-   '("W" . window-swap-states)
-   '("o" . delete-other-windows)
-   '("s" . split-window-right)
-   '("-" . split-window-below)
+   '("w" . other-window)                ; choose other window quickly
+   '("W" . window-swap-states)          ; swap
+   '("o" . delete-other-windows)        ; delete other window
+   '("s" . split-window-right)          ; split vertically
+   '("-" . split-window-below)          ; split horizontally
    ;; high frequency commands
    '("$" . +change-theme)
-   '(";" . comment-dwim)
-   '("k" . kill-this-buffer)
-   '("p" . project-find-file)
-   '("j" . project-switch-to-buffer)
+   '(";" . comment-dwim)                ; comment a line
+   '("k" . kill-this-buffer)            ; kill buffer
+   '("p" . project-find-file)           ; find in project dir
+   '("j" . project-switch-to-buffer)    ; switch to buffer in project dir
    '("d" . dired)
-   '("b" . switch-to-buffer)
-   '("r" . rg-project)
-   '("f" . find-file)
-   '("i" . imenu)
+   '("b" . switch-to-buffer)            ; switch buffer
+   '("r" . rg-project)                  ; rg PATTERN in dir
+   '("f" . find-file)                   ; open file
+   '("i" . imenu)                       ; imenu to choose from
    '("a" . "M-x")
    '("v" . "C-x g")
    ;; toggles
-   '("L" . display-line-numbers-mode)
-   '("S" . smartparens-strict-mode)
+   '("L" . display-line-numbers-mode)   ; line number toggle
+   '("S" . smartparens-strict-mode)     ; parentasis guard
    '("t" . telega)
    '("P" . pass)
-   '("R" . org-roam-mode)
-   '("A" . org-agenda)
-   '("D" . docker))
+   '("R" . org-roam-mode)               ; roam mode
+   '("A" . org-agenda)                  ; agenda in org
+   '("C" . org-capture))                 ; quickly capture in org
+  '("D" . docker)
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
@@ -109,65 +112,68 @@
    '("1" . meow-expand-1)
    '("-" . negative-argument)
    '(";" . meow-reverse)
+   ;;; work on `THINGS'
    '("," . meow-inner-of-thing)
    '("." . meow-bounds-of-thing)
    '("[" . meow-beginning-of-thing)
    '("]" . meow-end-of-thing)
+   ;;; find and edit
    '("a" . meow-append)
    '("A" . meow-open-below)
    '("b" . meow-back-word)
    '("B" . meow-back-symbol)
    '("c" . meow-change)
    '("C" . meow-change-save)
-   '("d" . meow-C-d)
-   '("D" . meow-backward-delete)
-   '("e" . meow-next-word)
-   '("E" . meow-next-symbol)
-   '("f" . meow-find)
-   '("F" . meow-find-expand)
+   '("d" . meow-C-d)                    ; delete one character
+   '("D" . meow-backward-delete)        ; delete backward a charater
+   '("e" . meow-next-word)              ; move to head to tail of a single word(a)
+   '("E" . meow-next-symbol)            ; move to next symbol (a-b-c-c)
+   '("f" . meow-find)                   ; find a character
+   '("F" . meow-find-expand)            ; TODO: find expand?
    '("g" . meow-cancel)
-   '("G" . meow-grab)
-   '("h" . meow-left)
+   '("G" . meow-grab)                   ; KEYPAD exit
+   ;;; `hjkl' motion
+   '("h" . meow-left)                   ; <--
    '("H" . meow-left-expand)
    '("i" . meow-insert)
    '("I" . meow-open-above)
-   '("j" . meow-next)
-   '("J" . meow-next-expand)
+   '("j" . meow-next)                   ; -->
+   '("M" . meow-next-expand)            ; J --> M
    '("k" . meow-prev)
-   '("K" . meow-prev-expand)
+   '("N" . meow-prev-expand)            ; K --> N
    '("l" . meow-right)
    '("L" . meow-right-expand)
-   '("m" . meow-join)
-   '("n" . meow-search)
+   ;;;
+   '("J" . meow-join)                   ; join
+   '("s" . meow-search)                 ; search something
    '("N" . meow-pop-search)
-   '("o" . meow-block)
+   '("o" . meow-block)                  ; select block in parentasis
    '("O" . meow-block-expand)
-   '("p" . meow-yank)
+   '("p" . meow-yank)                   ; paste from register
    '("P" . meow-yank-pop)
    '("q" . meow-quit)
-   '("Q" . meow-goto-line)
-   '("r" . meow-replace)
-   '("R" . meow-swap-grab)
-   '("s" . meow-kill)
-   '("t" . meow-till)
-   '("T" . meow-till-expand)
-   '("u" . meow-undo)
+   '("Q" . meow-goto-line)              ; go to a line with number
+   '("r" . meow-replace)                ; replace???
+   '("R" . meow-swap-grab)              ; grap and delete
+   '("K" . meow-kill)                   ; kill what???
+   '("t" . meow-till)                   ; go until find match
+   '("T" . meow-till-expand)            ; go until
+   '("u" . meow-undo)                   ; cancel operation
    '("U" . meow-undo-in-selection)
-   '("v" . meow-visit)
+   '("v" . meow-visit)                  ; vertically visit a MATCH
    '("V" . meow-kmacro-matches)
-   '("w" . meow-mark-word)
-   '("W" . meow-mark-symbol)
-   '("x" . meow-line)
+   '("w" . meow-mark-word)              ; mark all word under cursor (a)
+   '("W" . meow-mark-symbol)            ; mark all word-sequence under cursor (a-b-c-d)
+   '("x" . meow-line)                   ; mark the whole line, xyp can duplicate a line
    '("X" . meow-kmacro-lines)
-   '("y" . meow-save)
+   '("y" . meow-save)                   ; save to register
    '("Y" . meow-sync-grab)
-   '("z" . meow-pop-selection)
+   '("z" . meow-pop-selection)          ; cancel selection region
    '("Z" . meow-pop-all-selection)
-   '("&" . meow-query-replace)
+   '("&" . meow-query-replace)          ; search and replace
    '("%" . meow-query-replace-regexp)
-   '("'" . repeat)
-   '("\\" . quoted-insert)
-   '("<escape>" . meow-last-buffer)))
+   '("'" . repeat)                      ; repeat last action'("\\" . quoted-insert)
+   '("<escape>" . meow-last-buffer)))   ; switch to last buffer
 
 (setq
  meow-visit-sanitize-completion nil

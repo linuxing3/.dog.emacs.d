@@ -34,9 +34,9 @@
    '("r" . rg-project)
    '("f" . find-file)
    '("i" . imenu)
-   '("a" . execute-extended-command)
+   '("a" . execute-extended-command)    ; appliaction
    '("=" . "C-c ^")
-   '("p" . project-find-file)
+   '("p" . project-find-file)           ; project
    '("t" . ibuffer)
    '("q" . mbuf-prev-buffer)
    '("j" . mbuf-next-buffer)
