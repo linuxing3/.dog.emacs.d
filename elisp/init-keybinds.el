@@ -111,7 +111,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
   "o" '((lambda () (interactive) (find-file "~/OneDrive")) :which-key "OneDrive dir")
   "w" '((lambda () (interactive) (find-file "~/workspace")) :which-key "workspace dir")
   "D" '((lambda () (interactive) (find-file "~/.doom.d")) :which-key "doom.d Dir")
-  "M" '((lambda () (interactive) (find-file "~/.doom.emacs.d")) :which-key "doom.emacs.d Dir")
+  "M" '((lambda () (interactive) (find-file "~/.dog.emacs.d")) :which-key "dog.emacs.d Dir")
   "I" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) :which-key "emacs.d/init.el")
   "i" '((lambda () (interactive) (find-file "~/.evil.emacs.d/init.el")) :which-key "evil.emacs.d/init.el")
   "f" '(find-file :which-key "找到打开文件")

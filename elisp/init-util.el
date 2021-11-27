@@ -14,6 +14,43 @@
 
 (defvar-local +project-name-cache nil
   "Cache for current project name.")
+;;
+;;; git sync
+;;;###autoload
+(defun +git-push(dir)
+  "Run git push in a specific directory"
+  (interactive)
+  (with-dir dir
+            (shell-command "git add .")
+            (--> (format-time-string "%Y-%m-%d %H:%M" (current-time))
+                 (concat "git commit -m \"" it "\"")
+                 (shell-command it))
+            (shell-command "git push")))
+
+;;
+;;; git sync
+;;;###autoload
+(defun +git-pull(dir)
+  "Run git push in a specific directory"
+  (interactive)
+  (with-dir dir
+            (shell-command "git pull")))
+
+;;
+;;; ensure package to be installed
+
+(defun +ensure-package (LIST)
+  "Ensure package is installed"
+  (when (cl-find-if-not #'package-installed-p LIST)
+    ;; (package-refresh-contents)
+    (mapc #'package-install LIST)))
+
+
+(defun linuxing3/reload-emacs ()
+  "Ensure package is installed"
+  (interactive)
+  (load "~/.emacs.d/init.el"))
+
 
 (defun +in-string-p ()
   "Returns non-nil if inside string, else nil.
@@ -177,7 +214,7 @@ influence of C1 on the result."
 (defgroup linuxing3 nil
   "Linuxinge Emacs customization."
   :group 'convenience
-  :link '(url-link :tag "Homepage" "https://github.com/linuxing3/evil-emacs-config"))
+  :link '(url-link :tag "Homepage" "https://github.com/linuxing3/.dog.emacs.d"))
 
 (defcustom linuxing3-logo (expand-file-name
                            (if (display-graphic-p) "logo.png" "banner.txt")
@@ -226,30 +263,6 @@ in windows could be c:/Users/Administrator"
   "Can be vertico o ivy for completion"
   :group 'linuxing3
   :type 'string)
-
-(defcustom linuxing3-prettify-symbols-alist
-  '(("lambda" . ?λ)
-    ("<-" . ?←)
-    ("->" . ?→)
-    ("->>" . ?↠)
-    ("=>" . ?⇒)
-    ("map" . ?↦)
-    ("/=" . ?≠)
-    ("!=" . ?≠)
-    ("==" . ?≡)
-    ("<=" . ?≤)
-    (">=" . ?≥)
-    ("=<<" . (?= (Br . Bl) ?≪))
-    (">>=" . (?≫ (Br . Bl) ?=))
-    ("<=<" . ?↢)
-    (">=>" . ?↣)
-    ("&&" . ?∧)
-    ("||" . ?∨)
-    ("not" . ?¬))
-  "Alist of symbol prettifications.
-Nil to use font supports ligatures."
-  :group 'linuxing3
-  :type '(alist :key-type string :value-type (choice character sexp)))
 
 
 (provide 'init-util)

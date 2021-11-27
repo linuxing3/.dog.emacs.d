@@ -4,4 +4,4 @@
       +variable-pitch-family "Cantarell"
       +fixed-pitch-family "Cantarell"
       +font-size 16
-      +theme-list '(joker))
+      +theme-list '(joker minidark paperlike printed storybook grayscale graverse))

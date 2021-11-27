@@ -61,7 +61,7 @@
  '(cider-fringe-good-face         ((t (:foreground "#006666"))))
  '(cider-repl-stdout-face         ((t (:foreground "grey20"))))
  '(cider-repl-stderr-face         ((t (:inherit font-lock-string-face))))
- `(cider-result-overlay-face      ((t (:background "grey90" :box (:line-width (-1 . -1) :color "black")))))
+ ;; `(cider-result-overlay-face      ((t (:background "grey90" :box (:line-width (-1 . -1) :color "black")))))
  '(web-mode-html-attr-name-face   ((t ())))
  '(web-mode-html-tag-face         ((t ())))
  `(line-number-current-line       ((t (:bold t :background "#eeeeee"))))
