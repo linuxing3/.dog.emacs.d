@@ -1,9 +1,3 @@
-
-
-
-
-
-
 ;; ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂
 ;; Capture
 ;; ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂
@@ -48,7 +42,7 @@
 ;; ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂
 ;; 📷 Capture配置
 ;; ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂
-(use-package org
+(with-eval-after-load "org"
   :config
   (defun linuxing3/org-html-quote2 (block backend info)
     (when (org-export-derived-backend-p backend 'html)
@@ -166,7 +160,7 @@
                  "Snippets"
                  entry
                  (file snippets-org-file)
-                 (file "~/.evil.emacs.d/assets/capture-template/snippet.template")
+                 (file "~/org/template/snippet.template")
                  ;; "* %?\t%^g\n #+BEGIN_SRC %^{language}\n\n#+END_SRC"
                  :jump-to-captured t))
   (setq billing-org-file "~/org/billing.org")
@@ -175,7 +169,7 @@
                  "Billing"
                  plain
                  (file+function billing-org-file find-month-tree)
-                 (file "~/.evil.emacs.d/assets/capture-template/billing.template")
+                 (file "~/org/template/billing.template")
                  ;; " | %U | %^{类别} | %^{描述} | %^{金额} |"
                  :jump-to-captured t))
 
@@ -185,12 +179,12 @@
                  "Contacts"
                  entry
                  (file contacts-org-file)
-                 (file "~/.evil.emacs.d/assets/capture-template/contact.template")
+                 (file "~/org/template/contact.template")
                  ;; "* %^{姓名} %^{手机号}p %^{邮箱}p %^{住址}p %^{微信}p %^{微博}p %^{whatsapp}p\n\n  %?"
                  :empty-lines 1
                  :kill-buffer t))
 
-  (setq password-org-file (dropbox-path "org/password.cpt.org"))
+  (setq password-org-file "~/org/passwords.cpt.org")
   (add-to-list 'org-capture-templates
                '("xp"
                  "Passwords"
@@ -207,7 +201,7 @@
                  "Hugo Markdown Blog"
                  plain
                  (file ,(concat blog-org-dir (format-time-string "%Y-%m-%d.md"))) ;; Markdown file
-                 (file "~/.evil.emacs.d/assets/capture-template/blog.template")
+                 (file "~/org/template/blog.template")
 		 ))
 
   (add-to-list 'org-capture-templates
@@ -215,7 +209,7 @@
                  "Roam Daily Notes"
                  plain
                  (file ,(concat "~/org/roam/daily/" (format-time-string "%Y-%m-%d.org"))) ;; Org file
-                 (file "~/.evil.emacs.d/assets/capture-template/roamdaily.template")
+                 (file "~/org/template/roamdaily.template")
 		 ))
 
   ;; `Protocol' 网页抓取
@@ -274,7 +268,7 @@
                  "Son's Task"                               ; title
                  entry                                             ; type
                  (file+headline daniel-org-file "Tasks") ; target
-                 (file "~/.evil.emacs.d/assets/capture-template/todo.template")
+                 (file "~/org/template/todo.template")
                  :jump-to-captured t))
   (setq lulu-org-file "~/org/lulu.agenda.org")
   (add-to-list 'org-capture-templates
@@ -282,7 +276,7 @@
                  "Wife Lulu's Task"
                  entry
                  (file+headline lulu-org-file "Tasks")
-                 (file "~/.evil.emacs.d/assets/capture-template/todo.template")
+                 (file "~/org/template/todo.template")
                  :immediate-finish t
                  :jump-to-captured t))
 
@@ -293,7 +287,7 @@
                  "My Phone calls"
                  entry
                  (file+headline phone-org-file "Phone Calls")
-                 (file "~/.evil.emacs.d/assets/capture-template/phone.template")
+                 (file "~/org/template/phone.template")
                  :immediate-finish t
                  :jump-to-captured t
                  :new-line 1))
@@ -303,7 +297,7 @@
                  "My Habit"
                  entry
                  (file habit-org-file)
-                 (file "~/.evil.emacs.d/assets/capture-template/habit.template")
+                 (file "~/org/template/habit.template")
                  :jump-to-captured t
                  :immediate-finish t
                  :new-line 1))
@@ -334,7 +328,7 @@
 		 "⏰ My Daily Task"
 		 entry
 		 (file+datetree "~/org/dailytasks.agenda.org")
-                 (file "~/.evil.emacs.d/assets/capture-template/todo.template")
+                 (file "~/org/template/todo.template")
                  :immediate-finish t
 		 ))
   (add-to-list 'org-capture-templates
@@ -342,14 +336,14 @@
                  "⏰ My Work Task"
                  entry
                  (file+headline works-org-file "Tasks")
-                 (file "~/.evil.emacs.d/assets/capture-template/basic.template")
+                 (file "~/org/template/basic.template")
                  :immediate-finish t))
   (add-to-list 'org-capture-templates
 	       '("a"
 		 "⏰ My Appointment"
 		 entry
 		 (file+headline works-org-file "Appointment")
-		 (file "~/.evil.emacs.d/assets/capture-template/appointment.template")
+		 (file "~/org/template/appointment.template")
                  :immediate-finish t
 		 ))
   (setq inbox-org-file  "~/org/inbox.agenda.org")
@@ -358,9 +352,11 @@
                  "⏰ My Inbox"
                  entry
                  (file+headline inbox-org-file "Tasks")
-                 (file "~/.evil.emacs.d/assets/capture-template/inbox.template")
+                 (file "~/org/template/inbox.template")
                  :immediate-finish t
                  :new-line 1))
   )
 
-(provide 'org-capture)
+
+
+(provide 'org+capture)

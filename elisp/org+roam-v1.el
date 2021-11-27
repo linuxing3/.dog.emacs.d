@@ -1,26 +1,6 @@
-;;; org-roam v2
+;;
+;;; NOTE: `构建自己的知识网络'
 
-(setq
- org-roam-v2-ack t
-
- org-roam-directory
- (let ((p (expand-file-name "~/org/roam")))
-   (unless (file-directory-p p) (make-directory p))
-   p))
-
-(with-eval-after-load "org-roam"
-  ;; https://www.orgroam.com/manual.html#Roam-Protocol
-  (global-set-key (kbd "C-x M-n l") 'org-roam-buffer-toggle)
-  (global-set-key (kbd "C-x M-n f") 'org-roam-node-find)
-  (global-set-key (kbd "C-x M-n g") 'org-roam-graph)
-  (global-set-key (kbd "C-x M-n i") 'org-roam-node-insert)
-  (global-set-key (kbd "C-x M-n c") 'org-roam-capture)
-  (global-set-key (kbd "C-x M-n s") 'org-roam-db-sync)
-
-  (org-roam-setup)
-  (require 'org-roam-protocol))
-
-;;; templates
 (with-eval-after-load "org-roam"
   ;; 自定义私人笔记标题的处理方法
   (defun linuxing3/org-roam-title-private (title)
@@ -107,8 +87,36 @@
                  :file-name "${slug}"
                  :head "\n#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
                  :immediate-finish t
-                 :unnarrowed t)))
+                 :unnarrowed t))
+  :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n d"   . org-roam-dailies-find-date)
+               ("C-c n c"   . org-roam-dailies-capture-today)
+               ("C-c n C r" . org-roam-dailies-capture-tomorrow)
+               ("C-c n t"   . org-roam-dailies-find-today)
+               ("C-c n y"   . org-roam-dailies-find-yesterday)
+               ("C-c n r"   . org-roam-dailies-find-tomorrow)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
 
-(require 'org-roam)
+;; TODO: 使用server进行roam网页互动
+(use-package org-roam-server
+  :load-path "~/workspace/org-roam-server"
+  :ensure nil
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+        org-roam-server-port 10000
+        org-roam-server-authenticate nil
+        org-roam-server-export-inline-images t
+        org-roam-server-serve-files nil
+        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-network-poll t
+        org-roam-server-network-arrows nil
+        org-roam-server-network-label-truncate t
+        org-roam-server-network-label-truncate-length 60
+        org-roam-server-network-label-wrap-length 20)) ;; org roam config ends here
 
 (provide 'org+roam)
