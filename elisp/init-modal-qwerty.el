@@ -34,7 +34,7 @@
    '("p" . project-find-file)
    '("j" . project-switch-to-buffer)
    '("d" . dired)
-   '("b" . switch-to-buffer)
+   '("b" . counsel-buffer)
    '("r" . rg-project)
    '("f" . find-file)
    '("i" . imenu)

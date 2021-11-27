@@ -8,6 +8,51 @@
 (straight-use-package 'prescient)
 (straight-use-package 'yasnippet)
 
+(defun linuxing3/better-vertico-h ()
+  (progn
+    ;; `completion'
+    (use-package vertico
+      :init
+      (vertico-mode)
+      (setq vertico-scroll-margin 0)
+      (setq vertico-count 10)
+      (setq vertico-resize t)
+      (define-key vertico-map "?" #'minibuffer-completion-help)
+      (define-key vertico-map (kbd "M-RET") #'minibuffer-force-complete-and-exit)
+      (define-key vertico-map (kbd "M-TAB") #'minibuffer-complete)
+      (setq vertico-cycle t))))
+
+(defun linuxing3/better-find-h ()
+  (progn
+    (use-package avy
+      :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
+
+    (use-package ace-window
+      :config
+      (global-set-key (kbd "M-o") 'ace-window)
+      (setq aw-dispatch-always t))
+
+    (use-package wgrep)
+
+    (use-package marginalia
+      :bind (("M-A" . marginalia-cycle)
+             :map minibuffer-local-map
+             ("M-A" . marginalia-cycle))
+      :init
+      (marginalia-mode))
+
+
+    (use-package orderless
+      :init
+      ;; Configure a custom style `dispatcher' (see the Consult wiki)
+      ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+      ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+      (setq completion-styles '(orderless)
+            completion-category-defaults nil
+            completion-category-overrides '((file (styles partial-completion)))))
+    )
+  )
+
 (defun +complete ()
   (interactive)
   (or (yas/expand)
@@ -114,5 +159,10 @@
 
 (with-eval-after-load "wgrep"
   (define-key wgrep-mode-map (kbd "C-c C-c") #'wgrep-finish-edit))
+
+(linuxing3/better-find-h)
+;;; (linuxing3/better-vertico-h)
+(require 'editor+embark)
+(require 'editor+consult)
 
 (provide 'init-completion)
