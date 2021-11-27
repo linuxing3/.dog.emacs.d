@@ -1,9 +1,7 @@
 ;;; org-roam v2
-(require 'org-roam)
 
 (setq
  org-roam-v2-ack t
-
  org-roam-directory
  (let ((p (expand-file-name "~/org/roam")))
    (unless (file-directory-p p) (make-directory p))
@@ -110,5 +108,6 @@
                  :immediate-finish t
                  :unnarrowed t)))
 
+(require 'org-roam)
 
 (provide 'org+roam)
