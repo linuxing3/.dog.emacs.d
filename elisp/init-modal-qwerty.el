@@ -143,7 +143,9 @@
    '("f" . meow-find)                   ; find a character
    '("F" . meow-find-expand)            ; TODO: find expand?
    '("g" . meow-cancel)
-   '("G" . meow-grab)                   ; KEYPAD exit
+   '("G" . meow-grab)                   ; Grap as `secondary' selection, R to swap
+   '("R" . meow-swap-grab)              ; swap with the secondary selection
+   '("Y" . meow-sync-grab)              ; sync with the secondary selection
    ;;; `hjkl' direction motion
    '("h" . meow-left)                   ; <--
    '("H" . meow-left-expand)
@@ -168,14 +170,12 @@
    '("K" . meow-kill)                   ; kill until end
    '("t" . meow-till)                   ; go until find match
    '("y" . meow-save)                   ; save to register
-   '("Y" . meow-sync-grab)
    '("p" . meow-yank)                   ; paste from register
    '("P" . meow-yank-pop)
    ;;; misc
    '("q" . meow-quit)
    '("Q" . meow-goto-line)              ; go to a line with number
    '("r" . meow-replace)                ; replace
-   '("R" . meow-swap-grab)              ; grap and delete
    '("T" . meow-till-expand)            ; go until expand
    '("u" . meow-undo)                   ; cancel operation
    '("U" . meow-undo-in-selection)
