@@ -1,5 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
+;;; packages to install
 (straight-use-package 'htmlize)
 (straight-use-package 'org-roam)
 (straight-use-package 'org-superstar)
@@ -27,7 +28,7 @@
 
 (setq org-html-checkbox-type 'unicode)
 
-;;; Init config
+;;; private config
 (defun linuxing3/org-config-h()
   ;; 设定`todo关键字'
   (setq org-todo-keywords '((sequence "[学习](s)" "[待办](t)" "[等待](w)" "|" "[完成](d)" "[取消](c)")
@@ -45,7 +46,7 @@
   (setq org-use-fast-todo-selection t)
   (setq org-treat-S-cursor-todo-selection-as-state-change nil)
   (setq org-timer-default-timer 25)
-  (setq org-clock-sound "~/.evil.emacs.d/assets/music/music-box.wav"))
+  (setq org-clock-sound "~/org/music-box.wav"))
 
 ;;; Styles
 (defun linuxing3/appearance-config-h ()
@@ -103,9 +104,7 @@
           (org-agenda-files :maxlevel . 3))
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil)
-					; Allow refile to create parent tasks with confirmation
   (defun linuxing3/verify-refile-target ()
-    "Exclude todo keywords with a done state from refile targets"
     (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
   (setq org-refile-target-verify-function 'linuxing3/verify-refile-target))
@@ -115,10 +114,10 @@
 
 ;;; Bootstrap
 (with-eval-after-load  "org"
-  (define-key org-mode-map (kbd "<f8>") 'org-latex-auto-toggle)
   (require 'org-tempo)
   (require 'org-protocol)
   (+org-babel-setup)
+
   (custom-set-faces
    '(org-table ((t :inherit 'fixed-pitch)))
    '(org-code ((t :inherit 'fixed-pitch)))
@@ -126,15 +125,16 @@
    '(org-checkbox ((t :inherit 'fixed-pitch))))
 
   (add-hook 'org-mode-hook #'+org-init)
-  (linuxing3/org-config-h)
-  (linuxing3/refile-config-h)
-  (linuxing3/appearance-config-h)
   (require 'ob)
   (require 'ob-dot)
   (require 'ob-plantuml)
   (require 'ob-restclient)
   (require 'ob-clojure)
-  (require 'ob-js))
+  (require 'ob-js)
+  (linuxing3/org-config-h)
+  (linuxing3/refile-config-h)
+  (linuxing3/appearance-config-h)
+  )
 
 (with-eval-after-load "ob"
   (org-babel-do-load-languages

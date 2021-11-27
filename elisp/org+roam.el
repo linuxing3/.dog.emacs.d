@@ -1,4 +1,5 @@
 ;;; org-roam v2
+(require 'org-roam)
 
 (setq
  org-roam-v2-ack t
@@ -109,6 +110,5 @@
                  :immediate-finish t
                  :unnarrowed t)))
 
-(require 'org-roam)
 
 (provide 'org+roam)
