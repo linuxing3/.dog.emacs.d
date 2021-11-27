@@ -152,12 +152,12 @@
 (setq org-html-themify-themes '((dark . graverse)
                                 (light . grayscale)))
 ;;; Application
-(require 'org+roam)
-(require 'org+latex)
-(require 'org+capture)
-(require 'org+agenda)
-(require 'org+pretty)
-(require 'org+publish)
-(require 'org+reminder)
+(require 'org+roam)                     ; v2
+(require 'org+latex)                    ; latex
+(require 'org+capture)                  ; my capture template
+(require 'org+agenda)                   ; super agenda support
+(require 'org+pretty)                   ; pretty symbols
+(require 'org+publish)                  ; publish to server
+(require 'org+block)                    ; abbreviation template
 
 (provide 'init-org)

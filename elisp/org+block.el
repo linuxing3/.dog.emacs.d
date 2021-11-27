@@ -141,6 +141,6 @@
   _ - \n
   "#+end_src\n")
 
-(define-abbrev org-mode-abbrev-table "selisp" "" 'skel-org-block-elisp)
+(define-abbrev org-mode-abbrev-table "sel" "" 'skel-org-block-elisp)
 
 (provide 'org+block)

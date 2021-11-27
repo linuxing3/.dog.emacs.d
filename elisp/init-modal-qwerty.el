@@ -11,44 +11,44 @@
 ;;; xyp         ; duplicate a line and paste   | yyp
 
 (meow-leader-define-key
-   ;; reverse command query
-   '("^" . meow-keypad-describe-key)
-   ;; cheatsheet
-   '("?" . meow-cheatsheet)
-   ;; high frequency keybindings
-   '("e" . "C-x C-e")
-   '(")" . "C-)")
-   '("}" . "C-}")
-   '("." . "M-.")
-   '("," . "M-,")
-   ;; window management
-   '("w" . other-window)
-   '("W" . window-swap-states)
-   '("o" . delete-other-windows)
-   '("s" . split-window-right)
-   '("-" . split-window-below)
-   ;; high frequency commands
-   '("$" . +change-theme)
-   '(";" . comment-dwim)                ; comment a line
-   '("k" . kill-this-buffer)
-   '("p" . project-find-file)
-   '("j" . project-switch-to-buffer)
-   '("d" . dired)
-   '("b" . counsel-buffer)
-   '("r" . rg-project)
-   '("f" . find-file)
-   '("i" . imenu)
-   '("a" . "M-x")
-   '("v" . "C-x g")
-   ;; toggles
-   '("L" . display-line-numbers-mode)
-   '("S" . smartparens-strict-mode)
-   '("t" . telega)
-   '("P" . pass)
-   '("R" . org-roam-mode)
-   '("A" . org-agenda)
-   '("C" . org-capture)
-   '("D" . docker))
+ ;; reverse command query
+ '("^" . meow-keypad-describe-key)
+ ;; cheatsheet
+ '("?" . meow-cheatsheet)
+ ;; high frequency keybindings
+ '("e" . "C-x C-e")
+ '(")" . "C-)")
+ '("}" . "C-}")
+ '("." . "M-.")
+ '("," . "M-,")
+ ;; window management
+ '("w" . other-window)
+ '("W" . window-swap-states)
+ '("o" . delete-other-windows)
+ '("s" . split-window-right)
+ '("-" . split-window-below)
+ ;; high frequency commands
+ '("$" . +change-theme)
+ '(";" . comment-dwim)                ; comment a line
+ '("k" . kill-this-buffer)
+ '("p" . project-find-file)
+ '("j" . project-switch-to-buffer)
+ '("d" . dired)
+ '("b" . counsel-buffer)
+ '("r" . rg-project)
+ '("f" . find-file)
+ '("i" . imenu)
+ '("a" . "M-x")
+ '("v" . "C-x g")
+ ;; toggles
+ '("L" . display-line-numbers-mode)
+ '("S" . smartparens-strict-mode)
+ '("t" . telega)
+ '("P" . pass)
+ '("R" . org-roam-mode)
+ '("A" . org-agenda)
+ '("C" . org-capture)
+ '("D" . docker))
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
@@ -79,6 +79,7 @@
    '("}" . "C-}")                       ; close previous )
    '("." . "M-.")                       ; jump to definition
    '("," . "M-,")                       ; jump back from definition
+   '("/" . consult-line)                ; consult line with match
    ;; window management
    '("w" . other-window)                ; choose other window quickly
    '("W" . window-swap-states)          ; swap
@@ -106,8 +107,9 @@
    '("R" . org-roam-mode)               ; roam mode
    '("A" . org-agenda)                  ; agenda in org
    '("C" . org-capture))                ; quickly capture in org
-   '("D" . docker)
+  '("D" . docker)
   (meow-normal-define-key
+   ;; '("SPC" . execute-extended-command)
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
    '("8" . meow-expand-8)

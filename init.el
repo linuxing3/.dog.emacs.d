@@ -1,12 +1,13 @@
 (require 'init-util)
 (require 'init-modal)
-(require 'init-modal-qwerty)
+(require 'init-modal-qwerty)            ; moew mode
 
 (require 'init-project)
 (require 'init-edit)
 (require 'init-dired)
+(require 'editor+eshell)                ; git eshell
 
-(require 'init-lsp)
+(require 'init-lsp)                     ; IDE support
 (require 'init-web)
 ;; (require 'init-clojure)
 ;; (require 'init-elixir)
@@ -19,7 +20,7 @@
 
 (require 'init-org)                     ; org mode productivity
 
-(require 'init-completion)
+(require 'init-completion)              ; selectrum/consult/prescient
 (require 'init-pass)
 (require 'init-rime)
 (require 'init-conf)
@@ -35,5 +36,5 @@
 (require 'init-rss)
 (require 'init-server)
 
-(require 'init-format)
-(require 'init-keybinds)
+(require 'init-format)                  ; format all
+(require 'init-keybinds)                ; leader keybinds with f7
