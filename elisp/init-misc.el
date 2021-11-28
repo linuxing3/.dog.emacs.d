@@ -2,6 +2,7 @@
 (straight-use-package 'pinentry)
 (straight-use-package 'highlight-numbers)
 (straight-use-package 'rainbow-mode)
+(straight-use-package 'multiple-cursors)
 
 (require 'dumb-jump)
 
@@ -24,5 +25,11 @@
 ;; (add-to-list 'htab-ignore-commands 'meow-minibuffer-quit)
 ;; (global-set-key (kbd "<XF86Forward>") #'htab-next-buffer)
 ;; (global-set-key (kbd "<XF86Back>") #'htab-prev-buffer)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
 (provide 'init-misc)
