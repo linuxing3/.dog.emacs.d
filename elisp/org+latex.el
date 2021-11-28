@@ -45,7 +45,4 @@
 
 (add-hook '+after-change-theme-hook '+org-update-latex-option-by-theme)
 
-(with-eval-after-load  "org"
-  (define-key org-mode-map (kbd "<f8>") 'org-latex-auto-toggle))
-
 (provide 'org+latex)

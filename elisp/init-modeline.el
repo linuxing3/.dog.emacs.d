@@ -21,7 +21,9 @@
             (propertize " " 'display `((space :align-to (- (+ right right-fringe right-margin) (+ 1 ,rhs-w)))))
             rhs-str)))
 
-(setq-default mode-line-format '((:eval (+format-mode-line))))
-(setq-default header-line-format nil)
+;; (setq-default mode-line-format '((:eval (+format-mode-line))))
+;; (setq-default header-line-format nil)
+
+(doom-modeline-mode)
 
 (provide 'init-modeline)

@@ -5,7 +5,6 @@
 (require 'init-project)
 (require 'init-edit)
 (require 'init-dired)
-(require 'editor+eshell)                ; git eshell
 
 (require 'init-lsp)                     ; IDE support
 (require 'init-web)
@@ -40,4 +39,3 @@
 (require 'init-keybinds)                ; leader keybinds with f7
 (require 'init-mail)                    ; read mail
 (require 'init-ui)
-(require 'init-nano)

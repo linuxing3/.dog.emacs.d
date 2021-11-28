@@ -1,6 +1,6 @@
 ;; themes and toolbar
-(defvar efs/default-font-size 180)
-(defvar efs/default-variable-font-size 180)
+(defvar efs/default-font-size 140)
+(defvar efs/default-variable-font-size 140)
 (defvar efs/frame-transparency '(90 . 90))
 
 (set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
@@ -11,9 +11,9 @@
 ;;; font
 (defun +modern-ui-font-h ()
   (progn
-    (set-face-attribute 'default nil :font "Droid Sans Mono" :height efs/default-font-size)
+    (set-face-attribute 'default nil :font "Roboto Mono" :height efs/default-font-size)
     ;; Set the fixed pitch face
-    (set-face-attribute 'fixed-pitch nil :font "Droid Sans Mono" :height efs/default-font-size)
+    (set-face-attribute 'fixed-pitch nil :font "Roboto Mono" :height efs/default-font-size)
     ;; Set the variable pitch face
     (set-face-attribute 'variable-pitch nil :font "Cantarell" :height efs/default-variable-font-size :weight 'regular)
     ))
@@ -46,5 +46,18 @@
       (menu-bar-mode -1)
       (window-divider-mode 1)
       (blink-cursor-mode -1)))
+
+(require 'editor+eshell)                ; git eshell
+
+;; (require 'elegant)
+;; (require 'elegance)
+;; (require 'sanity)
+;; (load-theme 'elegant-light)
+;; (load-theme 'doom-palenight)
+
+(when (display-graphic-p)
+  (+modern-ui-font-h)
+  (+modern-ui-chinese-h)
+  (+modern-ui-slim-h))
 
 (provide 'init-ui)
