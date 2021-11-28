@@ -18,3 +18,6 @@ emacs.pdmp
 url
 eshell
 .org-id-locations
+.mc-list
+history
+core
