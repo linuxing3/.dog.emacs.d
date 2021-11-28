@@ -1,3 +1,4 @@
+(straight-use-package '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
 
 (setq +font-family "Droid Sans Mono"
       +font-unicode-family "WenQuanYi Micro Hei Mono"

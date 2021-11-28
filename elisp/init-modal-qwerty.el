@@ -4,11 +4,15 @@
 (straight-use-package '(meow :type git :host github :repo "DogLooksGood/meow"))
 
 ;;; KEYS STILL WORK
-;;; c-n/p       ; move line
-;;; c-f/b       ; move character
+;;; c-n|p       ; move line
+;;; c-f|b       ; move character
+;;; c-ARROW     ; move by word or paragraph
+;;; s-ARROW     ; move and select
 ;;; A-M-> <     ; begin end of buffer          | gg
 ;;; xKp         ; delete a line and paste      | ddp
 ;;; xyp         ; duplicate a line and paste   | yyp
+;;; << >>       ; select line to head or tail
+;;; C-a|e       ; head of line, tail of line
 
 (meow-leader-define-key
  ;; reverse command query
@@ -58,6 +62,7 @@
   ;;; `SPC' as leader key
   (meow-leader-define-key
    ;; SPC j/k will run the original command in MOTION state.
+
    '("j" . meow-motion-origin-command)
    '("k" . meow-motion-origin-command)
    ;; Use SPC (0-9) for digit arguments.
@@ -107,7 +112,7 @@
    '("R" . org-roam-mode)               ; roam mode
    '("A" . org-agenda)                  ; agenda in org
    '("C" . org-capture))                ; quickly capture in org
-  '("D" . docker)
+   '("D" . docker)
   (meow-normal-define-key
    ;; '("SPC" . execute-extended-command)
    '("0" . meow-expand-0)
@@ -120,8 +125,8 @@
    '("3" . meow-expand-3)
    '("2" . meow-expand-2)
    '("1" . meow-expand-1)
-   '("-" . negative-argument)
-   '(";" . meow-reverse)
+   '("-" . negative-argument)           ; negative argument
+   '(";" . meow-reverse)                ; reverse move
    ;;; work on `THINGS'
    '("," . meow-inner-of-thing)
    '("'" . meow-bounds-of-thing)
@@ -136,15 +141,13 @@
    '("c" . meow-change)                 ; change a word
    '("C" . meow-change-save)
    '("d" . meow-C-d)                    ; delete one character
-   '("w" . meow-mark-word)              ; mark a whole word under cursor (a)
-   '("W" . meow-mark-symbol)            ; mark a whole word-sequence under cursor (a-b-c-d)
-   '("x" . meow-line)                   ; mark the whole line, xyp duplicate a line, xKp move a line
-   '("X" . meow-kmacro-lines)
+   '("x" . meow-line)                   ; mark the whole line, `xyp' duplicate a line, `xKp' move a line
+   '("X" . meow-kmacro-lines)           ; record a micro, x10X to apploy for 10 lines
    '("D" . meow-backward-delete)        ; delete backward a charater
    ;;; action
-   '("f" . meow-find)                   ; find a character
+   '("f" . meow-find)                   ; find and expand to a character
    '("F" . meow-find-expand)            ; TODO: find expand?
-   '("g" . meow-cancel)
+   '("g" . meow-cancel)                 ; cancel selection and `go' end point
    '("G" . meow-grab)                   ; Grap as `secondary' selection, R to swap
    '("R" . meow-swap-grab)              ; swap with the secondary selection
    '("Y" . meow-sync-grab)              ; sync with the secondary selection
@@ -156,21 +159,23 @@
    '("k" . meow-prev)
    '("N" . meow-prev-expand)            ; K --> N
    '("l" . meow-right)                  ; -->
+   '("L" . meow-right-expand)
    ;;; `word' and `symbol' Motion
    '("b" . meow-back-word)              ; move back a word
    '("B" . meow-back-symbol)            ; move back a sequence of word
    '("e" . meow-next-word)              ; move from cursor to tail of word(a)
    '("E" . meow-next-symbol)            ; move to next symbol (a-b-c-c)
-   '("L" . meow-right-expand)
+   '("w" . meow-mark-word)              ; mark a whole word under cursor (a)
+   '("W" . meow-mark-symbol)            ; mark a whole word-sequence under cursor (a-b-c-d)
    ;;; `extra' act on `selection'
-   '("J" . meow-join)                   ; join
-   '("/" . meow-search)                 ; search match as selection
-   '("N" . meow-pop-search)
-   '("o" . meow-block)                  ; select block in parentasis
+   '("J" . meow-join)                   ; `JK' to join to lines
+   '("/" . meow-search)                 ; select a pattern to search all
+   '("N" . meow-pop-search)             ; diselect search
+   '("o" . meow-block)                  ; select next block in parentasis
    '("O" . meow-block-expand)
    ;;; `delete', `copy' and `paste'
    '("K" . meow-kill)                   ; kill until end
-   '("t" . meow-till)                   ; go until find match
+   '("t" . meow-till)                   ; select until find match
    '("y" . meow-save)                   ; save to register
    '("p" . meow-yank)                   ; paste from register
    '("P" . meow-yank-pop)
@@ -186,8 +191,9 @@
    '("z" . meow-pop-selection)          ; cancel selection region
    '("Z" . meow-pop-all-selection)
    '("&" . meow-query-replace)          ; search and replace
-   '("%" . meow-query-replace-regexp)
-   '("." . repeat)                      ; repeat last action'("\\" . quoted-insert)
+   '("%" . meow-query-replace-regexp)   ; search and replace with regular expression
+   '("." . repeat)                      ; repeat last action
+   '("\\" . quoted-insert)              ; insert quoted
    '("<escape>" . meow-last-buffer)))   ; switch to last buffer
 
 (setq

@@ -38,3 +38,4 @@
 
 (require 'init-format)                  ; format all
 (require 'init-keybinds)                ; leader keybinds with f7
+;; require 'init-nano)                    ; nano theme
