@@ -34,15 +34,6 @@
 (global-set-key (kbd "S-M-<up>") 'mc/mark-previous-like-this) ; vscode like vertical up
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
-;; themes and toolbar
-(defvar efs/default-font-size 180)
-(defvar efs/default-variable-font-size 180)
-(defvar efs/frame-transparency '(90 . 90))
-(set-frame-parameter (selected-frame) 'alpha efs/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,efs/frame-transparency))
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(doom-modeline-mode 1)
+(add-hook 'after-init-hook 'recentf-mode)
 
 (provide 'init-misc)

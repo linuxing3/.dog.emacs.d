@@ -1,5 +1,6 @@
 
 (straight-use-package '(nano-emacs :type git :host github :repo "rougier/nano-emacs"))
+(straight-use-package '(mu4e-dashboard :type git :host github :repo "rougier/mu4e-dashboard"))
 (straight-use-package 'atom-one-dark-theme)
 (straight-use-package 'doom-themes)
 (straight-use-package 'all-the-icons)
