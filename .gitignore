@@ -1,4 +1,5 @@
 *~
+*.data
 projects
 eln-cache
 auto-save-list

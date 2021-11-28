@@ -41,7 +41,3 @@
 (require 'init-mail)                    ; read mail
 (require 'init-ui)
 (require 'init-nano)
-(when (display-graphic-p)
-  (+modern-ui-font-h)
-  (+modern-ui-chinese-h)
-  (+modern-ui-slim-h))

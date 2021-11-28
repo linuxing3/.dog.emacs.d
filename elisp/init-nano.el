@@ -1,3 +1,12 @@
+(setq nano-font-family-monospaced "Droid Sans Mono")
+(setq nano-font-family-proportional nil)
+(setq nano-font-size 16)
+
+(when (display-graphic-p)
+  (+modern-ui-font-h)
+  (+modern-ui-chinese-h)
+  (+modern-ui-slim-h))
+
 ;; Default layout (optional)
 (require 'nano-layout)
 (require 'nano-base-colors)
@@ -18,9 +27,5 @@
 (require 'nano-mu4e)
 (require 'nano-agenda)
 (require 'nano-help)
-
-(setq nano-font-family-monospaced "Droid Sans Mono")
-(setq nano-font-family-proportional nil)
-(setq nano-font-size 16)
 
 (provide 'init-nano)
