@@ -1,6 +1,6 @@
 (require 'init-util)
-(require 'init-modal)
-(require 'init-modal-qwerty)            ; moew mode
+(require 'init-modal)                   ; moew mode
+(require 'init-modal-qwerty)            ; moew mode, one keyboard
 
 (require 'init-project)
 (require 'init-edit)
@@ -38,4 +38,4 @@
 
 (require 'init-format)                  ; format all
 (require 'init-keybinds)                ; leader keybinds with f7
-;; require 'init-nano)                    ; nano theme
+;; (require 'init-nano)                 ; nano theme

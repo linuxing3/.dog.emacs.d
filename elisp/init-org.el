@@ -2,6 +2,7 @@
 
 ;;; packages to install
 (straight-use-package 'htmlize)
+(straight-use-package 'visual-fill-column)
 (straight-use-package 'org-roam)
 (straight-use-package 'org-superstar)
 (straight-use-package 'ob-restclient)
@@ -27,6 +28,48 @@
 ;;; org-mode
 
 (setq org-html-checkbox-type 'unicode)
+
+(defun linuxing3/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (visual-line-mode 1))
+
+(defun linuxing3/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  (visual-fill-column-mode 1))
+
+(defun linuxing3/org-font-setup-h ()
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  ;; Set faces for heading levels
+  (dolist (face '((org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1)))
+    (set-face-attribute (car face) nil :font "Cantarell" :weight 'regular :height (cdr face)))
+
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+
+
 
 ;;; private config
 (defun linuxing3/org-config-h()
@@ -109,37 +152,33 @@
 
   (setq org-refile-target-verify-function 'linuxing3/verify-refile-target))
 
-(defun +org-init ()
-  (variable-pitch-mode 1))
-
 ;;; Bootstrap
 (with-eval-after-load  "org"
   (require 'org-tempo)
   (require 'org-protocol)
-  (+org-babel-setup)
-
-  (custom-set-faces
-   '(org-table ((t :inherit 'fixed-pitch)))
-   '(org-code ((t :inherit 'fixed-pitch)))
-   '(org-block ((t :inherit 'fixed-pitch)))
-   '(org-checkbox ((t :inherit 'fixed-pitch))))
-
-  (add-hook 'org-mode-hook #'+org-init)
   (require 'ob)
   (require 'ob-dot)
   (require 'ob-plantuml)
   (require 'ob-restclient)
   (require 'ob-clojure)
   (require 'ob-js)
+  ;; org babel
+  (+org-babel-setup)
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  ;; style setup
+  (add-hook 'org-mode-hook #'linuxing3/org-mode-setup)
+  (add-hook 'org-mode-hook #'linuxing3/org-mode-visual-fill)
   (linuxing3/org-config-h)
   (linuxing3/refile-config-h)
   (linuxing3/appearance-config-h)
-  )
+  (linuxing3/org-font-setup-h))
 
 (with-eval-after-load "ob"
   (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((dot . t)
+   'org-babel-load-languages
+   '((dot . t)
      (plantuml . t)
      (restclient . t)
      (python . t)

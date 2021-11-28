@@ -70,4 +70,5 @@
 (when-let ((theme (car +theme-list)))
   (load-theme theme t))
 
+
 (provide 'init-laf)

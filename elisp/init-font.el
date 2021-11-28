@@ -27,7 +27,7 @@
 (defvar +font-wide-family "Droid Sans Mono")
 (defvar +font-tall-family "Droid Sans Mono")
 (defvar +font-unicode-family "Cantarell")
-(defvar +fixed-pitch-family "Cantarell")
+(defvar +fixed-pitch-family "Droid Sans Mono")
 (defvar +variable-pitch-family "Cantarell")
 (defvar +font-rescale '((tall . 1.0) (wide . 1.0)))
 (defvar +font-wide-or-tall 'tall)
