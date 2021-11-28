@@ -1,6 +1,21 @@
 ;;
 ;;; NOTE: `构建自己的知识网络'
 
+(use-package emacsql-sqlite3)
+;;
+;;; `windows'下只能使用`v1'版本
+(use-package org-roam
+  :ensure nil
+  :load-path "~/workspace/org-roam"
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory "~/org/roam")
+  :config
+  ;; 实现网页抓取的协议
+  (require 'org-roam-protocol)
+  (setq org-roam-filename-noconfirm nil))
+
 (with-eval-after-load "org-roam"
   ;; 自定义私人笔记标题的处理方法
   (defun linuxing3/org-roam-title-private (title)
@@ -119,4 +134,4 @@
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20)) ;; org roam config ends here
 
-(provide 'org+roam)
+(provide 'org+roam-v1)

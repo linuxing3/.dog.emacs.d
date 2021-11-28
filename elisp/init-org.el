@@ -191,7 +191,9 @@
 (setq org-html-themify-themes '((dark . graverse)
                                 (light . grayscale)))
 ;;; Application
-(require 'org+roam)                     ; v2
+(if (eq system-type 'gnu/linux)
+    (require 'org+roam)                 ; v2 on linux
+  (require 'org+roam-v1))               ; v1 on windows
 (require 'org+latex)                    ; latex
 (require 'org+capture)                  ; my capture template
 (require 'org+agenda)                   ; super agenda support
