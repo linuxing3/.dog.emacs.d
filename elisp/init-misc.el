@@ -33,7 +33,7 @@
 (global-set-key (kbd "S-M-<down>") 'mc/mark-next-like-this) ; vscode like vertical down
 (global-set-key (kbd "S-M-<up>") 'mc/mark-previous-like-this) ; vscode like vertical up
 (global-set-key (kbd "C-d") 'mc/mark-next-like-this) ; vscode like vertical down
-(global-set-key (kbd "C-D") 'mc/mark-previous-like-this) ; vscode like vertical up
+(global-set-key (kbd "C-S-d") 'mc/mark-previous-like-this) ; vscode like vertical up
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 (provide 'init-misc)
